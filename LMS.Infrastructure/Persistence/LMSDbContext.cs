@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMS.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class LMSDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
+        public LMSDbContext(DbContextOptions<LMSDbContext> options)
             : base(options)
         {
         }

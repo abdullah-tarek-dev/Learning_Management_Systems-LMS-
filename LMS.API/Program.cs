@@ -19,7 +19,7 @@ namespace LMS.API
             builder.Services.AddSwaggerGen();
 
             // database connection string
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<LMSDbContext>(options =>
             {
                 options.UseNpgsql(
                     builder.Configuration.GetConnectionString("DefaultConnection"));
