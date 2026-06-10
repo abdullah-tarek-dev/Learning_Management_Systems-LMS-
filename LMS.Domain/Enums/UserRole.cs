@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace LMS.Domain.Enums
 {
-    internal class UserRole
+    public enum UserRole
     {
+        Admin,
+        Instructor,
+        Student
     }
 }

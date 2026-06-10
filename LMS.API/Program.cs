@@ -2,6 +2,7 @@
 using System;
 using LMS.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using LMS.Infrastructure;
 
 namespace LMS.API
 {
@@ -18,12 +19,8 @@ namespace LMS.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // database connection string
-            builder.Services.AddDbContext<LMSDbContext>(options =>
-            {
-                options.UseNpgsql(
-                    builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+
+            builder.Services.AddInfrastructure(builder.Configuration);
 
             var app = builder.Build();
 

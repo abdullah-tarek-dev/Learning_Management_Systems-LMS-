@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMS.Domain.Enums
+namespace LMS.Infrastructure.Repositories
 {
-    public enum EnrollmentStatus
+    internal class SubmissionRepository
     {
-        Active,
-        Completed,
-        Dropped
     }
 }
