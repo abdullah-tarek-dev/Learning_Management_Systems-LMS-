@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LMS.Application.Interfaces.Repositories;
+using LMS.Domain.Entities;
+using LMS.Infrastructure.Persistence;
 
-namespace LMS.Infrastructure.Repositories
+namespace LMS.Infrastructure.Repositories;
+
+public class EnrollmentRepository
+    : GenericRepository<Enrollment>,
+      IEnrollmentRepository
 {
-    internal class EnrollmentRepository
+    public EnrollmentRepository(LMSDbContext context)
+        : base(context)
     {
     }
 }
