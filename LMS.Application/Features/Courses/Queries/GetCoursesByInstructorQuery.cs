@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using LMS.Application.DTOs.Course;
+using MediatR;
 
 namespace LMS.Application.Features.Courses.Queries
 {
-    internal class GetCoursesByInstructorQuery
-    {
-    }
+public record GetCoursesByInstructorQuery(Guid InstructorId)
+    : IRequest<IEnumerable<CourseResponseDto>>;
 }

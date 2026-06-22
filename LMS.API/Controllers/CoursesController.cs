@@ -26,6 +26,28 @@ public class CoursesController : ControllerBase
         return Ok(courses);
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var course = await _mediator.Send(
+            new GetCourseByIdQuery(id));
+
+        if (course is null)
+            return NotFound();
+
+        return Ok(course);
+    }
+
+    [HttpGet("instructor/{instructorId:guid}")]
+    public async Task<IActionResult> GetByInstructor(
+        Guid instructorId)
+    {
+        var courses = await _mediator.Send(
+            new GetCoursesByInstructorQuery(instructorId));
+
+        return Ok(courses);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create(
         CreateCourseDto dto)
@@ -33,6 +55,44 @@ public class CoursesController : ControllerBase
         var courseId = await _mediator.Send(
             new CreateCourseCommand(dto));
 
-        return Ok(courseId);
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = courseId },
+            courseId);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        UpdateCourseDto dto)
+    {
+        var result = await _mediator.Send(
+            new UpdateCourseCommand(id, dto));
+
+        if (!result)
+            return NotFound();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var result = await _mediator.Send(
+            new DeleteCourseCommand(id));
+
+        if (!result)
+            return NotFound();
+
+        return NoContent();
+    }
+    [HttpGet("{id:guid}/students")]
+    public async Task<IActionResult> GetStudents(
+    Guid id)
+    {
+        var students = await _mediator.Send(
+            new GetCourseStudentsQuery(id));
+
+        return Ok(students);
     }
 }
